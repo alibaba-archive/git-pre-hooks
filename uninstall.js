@@ -26,7 +26,7 @@ if (!fs.existsSync(hooksdir)) return;
 hookList.forEach(function (name) {
   var hookPath = path.join(hooksdir, name);
   if (fs.existsSync(hookPath + '.back')
-    && fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') >= 0)) {
+    && fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') >= 0) {
     fs.writeFileSync(hookPath, fs.readFileSync(hookPath + '.back'));
     fs.chmodSync(hookPath, '755');
   }

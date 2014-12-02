@@ -32,7 +32,7 @@ hookList.forEach(function (name) {
 
   // back old hook
   if (fs.existsSync(hookPath)
-    && fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') < 0)) {
+    && fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') < 0) {
     fs.writeFileSync(hookPath + '.back', fs.readFileSync(hookPath));
   }
 
