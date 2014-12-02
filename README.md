@@ -28,10 +28,10 @@ First install `git-pre-hooks` from npm.
 npm install git-pre-hooks --save-dev
 ```
 
-Then add hooks in your `package.json`:
+Then add `git-pre-hooks` config in your `package.json`:
 
 ```
-"hooks": {
+"git-pre-hooks": {
   "pre-commit": "make jshint",
   "pre-push": "make test",
   "pre-release": ["make test", "make build", "make test-build"]

@@ -21,9 +21,12 @@ child.exec('git rev-parse --show-toplevel', function (err, stdout) {
   }
 
   // no task to run
-  if (!pkg || !pkg.hooks || !pkg.hooks[command] || !pkg.hooks[command].length) return;
+  if (!pkg
+    || !pkg['git-pre-hooks']
+    || !pkg['git-pre-hooks'][command]
+    || !pkg['git-pre-hooks'][command].length) return;
 
-  run(root, pkg.hooks[command]);
+  run(root, pkg['git-pre-hooks'][command]);
 });
 
 function run(root, tasks) {
