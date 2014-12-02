@@ -12,7 +12,7 @@ git-pre-hooks
 [gittip-image]: https://img.shields.io/gittip/dead-horse.svg?style=flat-square
 [gittip-url]: https://www.gittip.com/dead-horse/
 
-Automatically install git pre hooks in your git repository that run your `npm scripts`
+Automatically install git pre hooks in your git repository that run your task.
 
 ## Installation
 
