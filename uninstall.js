@@ -19,15 +19,29 @@ var hookList = fs.readdirSync('./hooks');
 
 var gitdir = path.join(__dirname, '../../.git');
 var hooksdir = path.join(gitdir, 'hooks');
-
+console.log(gitdir, hooksdir)
 if (!fs.existsSync(gitdir)) return;
 if (!fs.existsSync(hooksdir)) return;
 
 hookList.forEach(function (name) {
   var hookPath = path.join(hooksdir, name);
-  if (fs.existsSync(hookPath + '.back')
-    && fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') >= 0) {
-    fs.writeFileSync(hookPath, fs.readFileSync(hookPath + '.back'));
-    fs.chmodSync(hookPath, '755');
+  var hookBackPath = hookPath + '.back';
+
+  var existHook = fs.existsSync(hookPath);
+  var hookNeedClean = isGenerated(hookPath);
+  var existBack = fs.existsSync(hookBackPath);
+
+  if (hookNeedClean) {
+    if (existBack) {
+      fs.writeFileSync(hookPath, fs.readFileSync(hookBackPath, 'utf-8'));
+      fs.chmodSync(hookPath, '755');
+      fs.unlinkSync(hookBackPath);
+    } else {
+      fs.unlinkSync(hookPath);
+    }
   }
 });
+
+function isGenerated(hookPath) {
+  return fs.readFileSync(hookPath, 'utf-8').indexOf('generate by git-pre-hooks') >= 0;
+}
