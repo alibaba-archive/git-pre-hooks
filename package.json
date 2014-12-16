@@ -9,7 +9,10 @@
     "uninstall": "node uninstall.js"
   },
   "keywords": [
-
+    "git",
+    "hooks",
+    "commit",
+    "release"
   ],
   "author": {
     "name": "dead-horse",
