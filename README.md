@@ -38,6 +38,17 @@ Then add `git-pre-hooks` config in your `package.json`:
 }
 ```
 
+### `pre-release` hook
+
+If you are using [git-extras](https://github.com/tj/git-extras), `git-pre-hooks` also support `pre-release` hook.
+Please make sure you install `git-extras` after 2014/12/03.
+
+One-liner:
+
+```sh
+$ (cd /tmp && git clone --depth 1 https://github.com/tj/git-extras.git && cd git-extras && sudo make install)
+```
+
 ### License
 
 MIT
