@@ -57,4 +57,5 @@ function run(root, tasks) {
 function error(err) {
   if (err.task) console.error('[%s] run `%s` error', command, err.task);
   console.error('[%s] Error Stack:\n%s', command, err.stack.replace(/^/gm, '  '));
+  process.exit(1);
 }
