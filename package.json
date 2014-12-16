@@ -1,10 +1,9 @@
 {
   "name": "git-pre-hooks",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Automatically install git pre hooks in your git repository that run your task",
   "main": "index.js",
   "scripts": {
-    "test": "make test",
     "install": "node install.js",
     "uninstall": "node uninstall.js"
   },
@@ -12,7 +11,8 @@
     "git",
     "hooks",
     "commit",
-    "release"
+    "release",
+    "package"
   ],
   "author": {
     "name": "dead-horse",
