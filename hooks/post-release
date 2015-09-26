@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+/* generate by git-pre-hooks */
+'use strict';
+
+var child = require('child_process');
+var fmt = require('util').format;
+var path = require('path');
+
+var command = path.basename(__filename);
+
+child.exec('git rev-parse --show-toplevel', function (err, stdout) {
+  if (err) return error(err);
+
+  var root = stdout.trim();
+  var pkg;
+  try {
+    pkg = require(path.join(root, 'package.json'));
+  } catch (err) {
+    return error(err);
+  }
+
+  // no task to run
+  if (!pkg
+    || !pkg['git-pre-hooks']
+    || !pkg['git-pre-hooks'][command]
+    || !pkg['git-pre-hooks'][command].length) return;
+
+  run(root, pkg['git-pre-hooks'][command]);
+});
+
+function run(root, tasks) {
+  if (typeof tasks === 'string') tasks = [tasks];
+  if (!Array.isArray(tasks)) {
+    return error(new Error('hooks.' + command + ' in package.json must be string or array'));
+  }
+
+  next();
+
+  function next() {
+    if (tasks.length === 0) return;
+
+    var task = tasks.shift();
+    var args = task.split(/\s+/);
+    var cmd = args.shift();
+
+    var c = child.spawn(cmd, args, {cwd: root, stdio: 'inherit'});
+    c.on('exit', function (code) {
+      if (code !== 0) {
+        return error(new Error(fmt('task `%s` exit with code %s', task, code)));
+      }
+      next();
+    });
+  }
+}
+
+function error(err) {
+  if (err.task) console.error('[%s] run `%s` error', command, err.task);
+  console.error('[%s] Error Stack:\n%s', command, err.stack.replace(/^/gm, '  '));
+  process.exit(1);
+}
