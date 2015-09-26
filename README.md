@@ -34,13 +34,14 @@ Then add `git-pre-hooks` config in your `package.json`:
 "git-pre-hooks": {
   "pre-commit": "make jshint",
   "pre-push": "make test",
-  "pre-release": ["make test", "make build", "make test-build"]
+  "pre-release": ["make test", "make build", "make test-build"],
+  "post-release": "npm publish"
 }
 ```
 
-### `pre-release` hook
+### `pre-release` & `post-release` hook
 
-If you are using [git-extras](https://github.com/tj/git-extras), `git-pre-hooks` also support `pre-release` hook.
+If you are using [git-extras](https://github.com/tj/git-extras), `git-pre-hooks` also support `pre-release` and `post-release` hook.
 Please make sure you install `git-extras` after 2014/12/03.
 
 One-liner:
