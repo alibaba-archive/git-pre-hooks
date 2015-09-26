@@ -1,6 +1,6 @@
 {
   "name": "git-pre-hooks",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Automatically install git pre hooks in your git repository that run your task",
   "main": "index.js",
   "scripts": {
