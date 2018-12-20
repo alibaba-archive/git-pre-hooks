@@ -41,10 +41,7 @@ function run(root, tasks) {
     if (tasks.length === 0) return;
 
     var task = tasks.shift();
-    var args = task.split(/\s+/);
-    var cmd = args.shift();
-
-    var c = child.spawn(cmd, args, {cwd: root, stdio: 'inherit'});
+    var c = child.spawn(task, {cwd: root, stdio: 'inherit', shell: true});
     c.on('exit', function (code) {
       if (code !== 0) {
         return error(new Error(fmt('task `%s` exit with code %s', task, code)));
