@@ -1,4 +1,10 @@
 
+1.2.1 / 2018-12-20
+==================
+
+**others**
+  * [[`61d547b`](http://github.com/node-modules/git-pre-hooks/commit/61d547b71d3c0d8ec263652ed3f488e9ff11a2ae)] - Run tasks using shell (Alba Mendez <<alba.mendez@basetis.com>>)
+
 1.2.0 / 2015-09-27 
 ==================
 
